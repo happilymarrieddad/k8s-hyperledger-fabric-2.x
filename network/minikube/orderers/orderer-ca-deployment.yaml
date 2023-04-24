@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orderer0-deployment
+  labels: {
+    component: orderer0,
+    type: orderer
+  }
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: orderer0
+      type: orderer
+  template:
+    metadata:
+      labels:
+        component: orderer0
+        type: orderer
+    spec:
+      containers:
+        - name: orderer0
+          image: happilymarrieddadudemy/hyperledger-orderer-init-container:latest
+          workingDir: /var/hyperledger/orderer
+          ports:
+            - containerPort: 7050
+          env:
+          - name: ORDERER_GENERAL_LISTENADDRESS
+            value: "0.0.0.0"
+
