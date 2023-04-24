@@ -1,0 +1,5 @@
+FROM hyperledger/fabric-ca:1.5.6
+
+COPY ../scripts/orderers/init_container.sh /scripts/
+
+CMD ["/scripts/init_container.sh"]
