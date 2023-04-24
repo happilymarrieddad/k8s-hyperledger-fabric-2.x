@@ -2,7 +2,7 @@
 
 /bin/sh -c > set -x;
 
-. /scripts/wait_for_ca.sh
+. /scripts/wait_for.sh
 
 echo "Ready to start enroll process to get certs"
 

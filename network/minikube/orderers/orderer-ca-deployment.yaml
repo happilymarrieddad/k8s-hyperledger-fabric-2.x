@@ -20,13 +20,11 @@ spec:
     spec:
       containers:
         - name: orderer0
-          image: happilymarrieddadudemy/hyperledger-orderer-init-container:86c943cd796f5c927d315a4c86ffc22662987f75
+          image: happilymarrieddadudemy/hyperledger-orderer-init-container:8bb1a6ca9c7501786f61b2c6eda86ee8db21411b
           workingDir: /var/hyperledger/orderer
           ports:
             - containerPort: 7050
           env:
-          - name: CA_HOST
-            value: "orderers-ca-service"
-          - name: CA_PORT
-            value: "7054"
+          - name: SERVICE_TO_WAIT_FOR
+            value: "https://orderers-ca-service:7054/cainfo"
 
