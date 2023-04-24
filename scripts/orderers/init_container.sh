@@ -2,10 +2,7 @@
 
 /bin/sh -c > set -x;
 
-while [ ! $(curl -k https://${CA_HOST}:${CA_PORT}/cainfo | jq --raw-output '.success') ]; do
-    echo "service 'https://${CA_HOST}:${CA_PORT}' not available so waiting 15 secs"
-    sleep 15;
-done
+. /scripts/wait_for_ca.sh
 
 echo "Ready to start enroll process to get certs"
 
