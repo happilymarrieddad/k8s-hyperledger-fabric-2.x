@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: orderer0
-          image: happilymarrieddadudemy/hyperledger-orderer-init-container:11cba60fc104cd91604e539705e4ee7bd23a7137
+          image: happilymarrieddadudemy/hyperledger-orderer-init-container:e46f2efcd264367c98051cd19480c038330e46fa
           workingDir: /var/hyperledger/orderer
           ports:
             - containerPort: 7050
