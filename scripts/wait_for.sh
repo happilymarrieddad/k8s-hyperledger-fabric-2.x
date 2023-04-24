@@ -1,11 +1,15 @@
 #!/bin/bash
 
-/bin/sh -c > set -x;
+set -x;
 
-while [ ! $(curl -k ${SERVICE_TO_WAIT_FOR} | jq --raw-output '.success') ]; do
-    echo "service '${SERVICE_TO_WAIT_FOR}' not available so waiting 15 secs"
+if [[ -z "${1}" ]]; then
+    echo "service to wait for IS NOT SET... resting forever"
+    sleep infinity
+fi
+
+while [ ! $(curl -k ${1} | jq --raw-output '.success') ]; do
+    echo "service '${1}' not available so waiting 2 secs"
     sleep 2;
 done
 
 echo "CA Ready!"
-

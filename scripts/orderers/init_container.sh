@@ -1,8 +1,8 @@
 #!/bin/bash
 
-/bin/sh -c > set -x;
+set -x;
 
-. /scripts/wait_for.sh
+. /scripts/wait_for.sh "${CA_SCHEME}://${CA_URL}/cainfo"
 
 echo "Ready to start enroll process to get certs"
 
