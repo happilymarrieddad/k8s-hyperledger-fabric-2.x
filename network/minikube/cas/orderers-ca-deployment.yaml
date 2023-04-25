@@ -32,7 +32,7 @@ spec:
             - ${USERNAME}:${PASSWORD}
             - --tls.enabled
             - --csr.hosts
-            - ${CSR_HOSTS},${CSR_HOSTS}-service
+            - ${CSR_HOSTS},${CSR_HOSTS}-service,orderers-ca-service
           ports:
             - containerPort: 7054
           env:

@@ -18,9 +18,13 @@ spec:
         component: orderer0
         type: orderer
     spec:
+      volumes:
+        - name: my-pv-storage
+          persistentVolumeClaim:
+            claimName: my-pv-claim
       containers:
         - name: orderer0
-          image: happilymarrieddadudemy/hyperledger-orderer-init-container:c483b098179dfe0d7d5ee750c61e56ec82d9306e
+          image: happilymarrieddadudemy/hyperledger-orderer-init-container:dadb0966611d86ff52ece9a35d0442cc7fcc4391
           workingDir: /var/hyperledger/orderer
           ports:
             - containerPort: 7050
@@ -33,4 +37,8 @@ spec:
             value: admin
           - name: CA_PASSWORD
             value: adminpw
+          volumeMounts:
+            - mountPath: /fabric-ca-server
+              name: my-pv-storage
+              subPath: state/orderers-ca
 
