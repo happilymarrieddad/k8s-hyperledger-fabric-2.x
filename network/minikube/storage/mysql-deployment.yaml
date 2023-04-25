@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-db-deployment
+  labels: {
+    component: mysql-db
+  }
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: mysql-db
+  template:
+    metadata:
+      labels:
+        component: mysql-db
+    spec:
+      volumes:
+        - name: my-pv-storage
+          persistentVolumeClaim:
+            claimName: my-pv-claim
+      containers:
+        - name: mysql-db
+          image: mysql:8.0.33
+          volumeMounts:
+            - name: my-pv-storage
+              mountPath: /var/lib/mysql
+              subPath: state/mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "adminpw"

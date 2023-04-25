@@ -29,21 +29,15 @@ spec:
           args:
             - start
             - -b
-            - ${USERNAME}:${PASSWORD}
+            - admin:adminpw
             - --tls.enabled
             - --csr.hosts
-            - ${CSR_HOSTS},${CSR_HOSTS}-service,oracle-ca-service
+            - oracle-ca,oracle-ca-service,oracle-ca-service
           ports:
             - containerPort: 7054
           env:
             - name: FABRIC_CA_HOME
               value: /etc/hyperledger/fabric-ca-server
-            - name: USERNAME
-              value: admin
-            - name: PASSWORD
-              value: adminpw
-            - name: CSR_HOSTS
-              value: oracle-ca
           volumeMounts:
             - mountPath: /etc/hyperledger/fabric-ca-server
               name: my-pv-storage

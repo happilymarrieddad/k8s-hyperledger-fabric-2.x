@@ -24,7 +24,7 @@ spec:
             claimName: my-pv-claim
       containers:
         - name: orderer0
-          image: happilymarrieddadudemy/hyperledger-orderer-init-container:dadb0966611d86ff52ece9a35d0442cc7fcc4391
+          image: happilymarrieddadudemy/hyperledger-orderer-init-container:acee28e49c827b743694db966875a9bb83de103c
           workingDir: /var/hyperledger/orderer
           ports:
             - containerPort: 7050
