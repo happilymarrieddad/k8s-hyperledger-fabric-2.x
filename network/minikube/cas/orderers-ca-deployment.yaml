@@ -30,9 +30,18 @@ spec:
             - start
             - -b
             - admin:adminpw
-            - --tls.enabled
             - --csr.hosts
             - orderers-ca,orderers-ca-service,orderers-ca-service
+            - --db.datasource
+            - "usr1:pass@tcp(mysql-db-service:3306)/hyperledger?parseTime=true"
+            - --db.type
+            - mysql
+            - --db.tls.certfiles
+            - /etc/mysql/ca.pem
+            - --db.tls.client.certfile
+            - /etc/mysql/client-cert.pem
+            - --db.tls.client.keyfile
+            - /etc/mysql/client-key.pem
           ports:
             - containerPort: 7054
           env:
@@ -42,3 +51,6 @@ spec:
             - mountPath: /etc/hyperledger/fabric-ca-server
               name: my-pv-storage
               subPath: state/orderers-ca
+            - name: my-pv-storage
+              mountPath: /etc/mysql
+              subPath: state/mysql

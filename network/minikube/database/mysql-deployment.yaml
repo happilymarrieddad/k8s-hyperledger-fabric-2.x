@@ -21,11 +21,19 @@ spec:
             claimName: my-pv-claim
       containers:
         - name: mysql-db
-          image: mysql:8.0.33
+          image: mysql:5.7
+          command: ["mysqld"]
+          args: ["--sql-mode="]
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "adminpw"
+            - name: MYSQL_DATABASE
+              value: "hyperledger"
+            - name: MYSQL_USER
+              value: "usr1"
+            - name: MYSQL_PASSWORD
+              value: "pass"
           volumeMounts:
             - name: my-pv-storage
               mountPath: /var/lib/mysql
               subPath: state/mysql
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: "adminpw"
