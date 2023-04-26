@@ -6,8 +6,9 @@ set -x;
 
 echo "Ready to start enroll process to get certs"
 
-# fabric-ca-client enroll \
-#     -u ${CA_SCHEME}://${CA_USERNAME}:${CA_PASSWORD}@${CA_URL} \
-#     --tls.certfiles /fabric-ca-server/tls-cert.pem
+fabric-ca-client enroll \
+    -u ${CA_SCHEME}://${CA_USERNAME}:${CA_PASSWORD}@${CA_URL} \
+    --tls.certfiles /fabric-ca-server/tls-cert.pem \
+    --mspdir /var/hyperledger/orderer/admin/msp
 
 sleep infinity
