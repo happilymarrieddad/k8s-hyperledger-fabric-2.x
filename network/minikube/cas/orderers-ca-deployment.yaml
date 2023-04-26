@@ -24,29 +24,20 @@ spec:
             claimName: my-pv-claim
       containers:
         - name: orderers-ca
-          image: hyperledger/fabric-ca:1.5.6
-          command: ["fabric-ca-server"]
-          args:
-            - start
-            - -b
-            - admin:adminpw
-            - --csr.hosts
-            - orderers-ca,orderers-ca-service,orderers-ca-service
-            - --db.datasource
-            - "usr1:pass@tcp(mysql-db-service:3306)/hyperledger?parseTime=true"
-            - --db.type
-            - mysql
-            - --db.tls.certfiles
-            - /etc/mysql/ca.pem
-            - --db.tls.client.certfile
-            - /etc/mysql/client-cert.pem
-            - --db.tls.client.keyfile
-            - /etc/mysql/client-key.pem
+          image: happilymarrieddadudemy/hyperledger-ca-root-mysql-container:b30ff4422adc304f67db249d498d783193e91b91
           ports:
             - containerPort: 7054
           env:
             - name: FABRIC_CA_HOME
               value: /etc/hyperledger/fabric-ca-server
+            - name: CA_USR
+              value: "admin"
+            - name: CA_PW
+              value: "adminpw"
+            - name: CSR_HOSTS
+              value: "orderers-ca,orderers-ca-service"
+            - name: DB_DATASOURCE
+              value: "usr1:pass@tcp(mysql-db-service:3306)/hyperledger?parseTime=true"
           volumeMounts:
             - mountPath: /etc/hyperledger/fabric-ca-server
               name: my-pv-storage
